@@ -210,15 +210,15 @@
 		26839F4F1B919AAE008FD788 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				26839F501B919AAE008FD788 /* Supporting Files */,
-				26839F791B919B34008FD788 /* chartee */,
-				2683A06B1B91DDBB008FD788 /* lib */,
-				2683A0981B91DFE4008FD788 /* resource */,
 				26839F541B919AAE008FD788 /* AppDelegate.h */,
 				26839F551B919AAE008FD788 /* AppDelegate.m */,
+				26839F791B919B34008FD788 /* chartee */,
+				2683A06B1B91DDBB008FD788 /* lib */,
 				26839F571B919AAE008FD788 /* CandleViewController.h */,
 				26839F581B919AAE008FD788 /* CandleViewController.m */,
 				26839F5D1B919AAE008FD788 /* Images.xcassets */,
+				26839F501B919AAE008FD788 /* Supporting Files */,
+				2683A0981B91DFE4008FD788 /* resource */,
 				26839F5F1B919AAE008FD788 /* LaunchScreen.xib */,
 				2683A06C1B91DF9D008FD788 /* indicators.json */,
 				2683A06D1B91DF9D008FD788 /* securities.json */,
@@ -686,7 +686,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92A1AA726E6647933978311B /* Pods-chartee.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -704,7 +704,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F123BAD906AA78242A1D65D /* Pods-chartee.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

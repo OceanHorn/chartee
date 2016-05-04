@@ -13,7 +13,7 @@
 #import "YFURLSessionManager.h"
 
 @interface CandleViewController ()
-
+@property (nonatomic, assign) YFURLRequestDataType requestFrequence;
 @end
 
 @implementation CandleViewController
@@ -28,6 +28,7 @@
     // init vars
     self.chartMode  = 1; //1,candleChart
     self.tradeStatus= 1;
+    self.requestFrequence = YFURLRequestDataTypeDay;
     self.req_freq   = @"d";
     self.req_type   = @"H";
     self.req_url    = @"http://ichart.yahoo.com/table.csv?s=%@&g=%@";
@@ -337,6 +338,7 @@
             sel.selected = NO;
             self.chartMode  = 0;
             self.req_freq   = @"1m";
+            self.requestFrequence = YFURLRequestDataTypeDay; // ??
             self.req_type   = @"T";
             [self getData];
             break;
@@ -365,6 +367,7 @@
             UIButton *sel = (UIButton *)[self.toolBar viewWithTag:2];
             sel.selected = NO;
             self.chartMode  = 1;
+            self.requestFrequence = YFURLRequestDataTypeDay;
             self.req_freq   = @"d";
             self.req_type   = @"H";
             [self getData];
@@ -375,6 +378,7 @@
             UIButton *sel = (UIButton *)[self.toolBar viewWithTag:2];
             sel.selected = NO;
             self.chartMode  = 1;
+            self.requestFrequence = YFURLRequestDataTypeWeek;
             self.req_freq   = @"w";
             self.req_type   = @"H";
             [self getData];
@@ -385,6 +389,7 @@
             UIButton *sel = (UIButton *)[self.toolBar viewWithTag:2];
             sel.selected = NO;
             self.chartMode  = 1;
+            self.requestFrequence = YFURLRequestDataTypeMonth;
             self.req_freq   = @"m";
             self.req_type   = @"H";
             [self getData];
@@ -497,7 +502,7 @@
 
 //    NSURL *url = [NSURL URLWithString:[reqURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [[YFURLSessionManager sharedURLSessionManager] fetch:self.req_security_id dataType:YFURLRequestDataTypeDay success:^(NSString *content) {
+    [[YFURLSessionManager sharedURLSessionManager] fetch:self.req_security_id dataType:self.requestFrequence success:^(NSString *content) {
         self.status.text = @"";
         [self dataTransform:content];
     } failure:^(NSError *error) {

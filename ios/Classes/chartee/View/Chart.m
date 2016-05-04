@@ -248,7 +248,7 @@
 				CGContextRef context = UIGraphicsGetCurrentContext();
 				CGContextSetShouldAntialias(context, YES);
 				CGContextSetRGBFillColor(context, [colors[0] floatValue], [colors[1] floatValue], [colors[2] floatValue], 1.0);
-                NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+                NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSForegroundColorAttributeName:[UIColor colorWithRed:[colors[0] floatValue] green:[colors[1] floatValue] blue:[colors[2] floatValue] alpha:1.0]};
 				[text drawAtPoint:CGPointMake(sec.frame.origin.x+sec.paddingLeft+2+w,sec.frame.origin.y) withAttributes:attrs];
 				w += [text sizeWithAttributes:attrs].width;
 			}
@@ -315,7 +315,7 @@
 
 //			[[@"" stringByAppendingFormat:format,yaxis.baseValue] drawAtPoint:CGPointMake(sec.frame.origin.x-1,baseY-7) withFont:[UIFont systemFontOfSize: 12]];
             
-            NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+            NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12], NSForegroundColorAttributeName:[UIColor whiteColor]};
             [[@"" stringByAppendingFormat:format,yaxis.baseValue] drawAtPoint:CGPointMake(sec.frame.origin.x-1,baseY-7) withAttributes:attrs];
 
 			CGContextSetStrokeColorWithColor(context, [[UIColor alloc] initWithRed:0.15 green:0.15 blue:0.15 alpha:1.0].CGColor);
@@ -340,7 +340,7 @@
 					}
                     CGContextStrokePath(context);
 
-                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12], NSForegroundColorAttributeName:[UIColor whiteColor]};
 					[[@"" stringByAppendingFormat:format,yaxis.baseValue+i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withAttributes:attrs];
 
 					if(yaxis.baseValue + i*step < yaxis.max){
@@ -363,7 +363,7 @@
 					}
                     CGContextStrokePath(context);
 
-                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12], NSForegroundColorAttributeName:[UIColor whiteColor]};
 					[[@"" stringByAppendingFormat:format,yaxis.baseValue-i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withAttributes:attrs];
 
 					if(yaxis.baseValue - i*step > yaxis.min){
