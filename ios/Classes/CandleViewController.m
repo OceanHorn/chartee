@@ -10,51 +10,41 @@
 #import "JSONKit.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation CandleViewController
 
-@synthesize candleChart;
-@synthesize autoCompleteView;
-@synthesize toolBar;
-@synthesize candleChartFreqView;
-@synthesize autoCompleteDelegate;
-@synthesize timer;
-@synthesize chartMode;
-@synthesize tradeStatus;
-@synthesize lastTime;
-@synthesize status;
-@synthesize req_freq;
-@synthesize req_type;
-@synthesize req_url;
-@synthesize req_security_id;
+@interface CandleViewController ()
+
+@end
+
+@implementation CandleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //add notification observer
+    // add notification observer
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(doNotification:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
-    //init vars
+    // init vars
     self.chartMode  = 1; //1,candleChart
     self.tradeStatus= 1;
     self.req_freq   = @"d";
     self.req_type   = @"H";
     self.req_url    = @"http://ichart.yahoo.com/table.csv?s=%@&g=%@";
 
-    //candleChart
+    // candleChart
     self.candleChart = [[Chart alloc] initWithFrame:CGRectMake(0, 62, self.view.frame.size.width, self.view.frame.size.height-62)];
-    [self.view addSubview:candleChart];
+    [self.view addSubview:self.candleChart];
 
     //toolbar
     self.toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, 22, self.view.frame.size.width, 40)];
 
-    [self.view addSubview:toolBar];
+    [self.view addSubview:self.toolBar];
     //status bar
     self.status = [[UILabel alloc] initWithFrame:CGRectMake(220, 0, 200, 40)];
     self.status.font = [UIFont systemFontOfSize:14];
     self.status.backgroundColor = [UIColor clearColor];
     self.status.textColor = [UIColor whiteColor];
-    [self.toolBar addSubview:status];
+    [self.toolBar addSubview:self.status];
 
 
     UIImage *btnImg = [ResourceHelper loadImage:@"candle_chart"];
@@ -75,7 +65,7 @@
     [self.toolBar addSubview:link];
 
 
-    //search bar
+    // search bar
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(self.toolBar.frame.size.width-250, 0, 250, 40)];
     [searchBar setBackgroundColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0]];
     searchBar.delegate = self;
@@ -91,7 +81,7 @@
     [self.toolBar addSubview:searchBar];
 
 
-    //candleChart freqView
+    // candleChart freqView
     self.candleChartFreqView = [[UIView alloc] initWithFrame:CGRectMake(80, -160, 120, 120)];
     [self.candleChartFreqView setBackgroundColor:[[UIColor alloc] initWithRed:0/255.f green:0/255.f blue:255/255.f alpha:1]];
 
@@ -103,7 +93,7 @@
     [btn setImage:btnImg forState:UIControlStateNormal];
     [btn setImage:btnImgBg forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [candleChartFreqView addSubview:btn];
+    [self.candleChartFreqView addSubview:btn];
 
     btnImg = [ResourceHelper loadImage:@"k1w"];
     btnImgBg = [ResourceHelper loadImage:[@"k1w" stringByAppendingFormat:@"_%@",@"selected"]];
@@ -113,7 +103,7 @@
     [btn setImage:btnImg forState:UIControlStateNormal];
     [btn setImage:btnImgBg forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [candleChartFreqView addSubview:btn];
+    [self.candleChartFreqView addSubview:btn];
 
     btnImg = [ResourceHelper loadImage:@"k1m"];
     btnImgBg = [ResourceHelper loadImage:[@"k1m" stringByAppendingFormat:@"_%@",@"selected"]];
@@ -123,9 +113,9 @@
     [btn setImage:btnImg forState:UIControlStateNormal];
     [btn setImage:btnImgBg forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [candleChartFreqView addSubview:btn];
+    [self.candleChartFreqView addSubview:btn];
 
-    [self.view addSubview:candleChartFreqView];
+    [self.view addSubview:self.candleChartFreqView];
 
 
     //init chart
@@ -136,10 +126,10 @@
     self.autoCompleteView = [[UITableView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-240, 62, 240, 0)];
     self.autoCompleteView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.autoCompleteView.showsVerticalScrollIndicator = YES;
-    self.autoCompleteView.delegate = autoCompleteDelegate;
-    self.autoCompleteView.dataSource = autoCompleteDelegate;
+    self.autoCompleteView.delegate = self.autoCompleteDelegate;
+    self.autoCompleteView.dataSource = self.autoCompleteDelegate;
     self.autoCompleteView.hidden = YES;
-    [self.view addSubview:autoCompleteView];
+    [self.view addSubview:self.autoCompleteView];
     [ResourceHelper setUserDefaults:nil forKey:@"autocompTime"];
     [self getAutoCompleteData];
 
@@ -153,6 +143,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.timer invalidate];
 }
 
 -(void)initChart{
@@ -176,7 +170,7 @@
     NSMutableArray *secTwo = [[NSMutableArray alloc] init];
     NSMutableArray *secThree = [[NSMutableArray alloc] init];
 
-    //price
+    // price
     NSMutableDictionary *serie = [[NSMutableDictionary alloc] init];
     NSMutableArray *data = [[NSMutableArray alloc] init];
     serie[@"name"] = @"price";
@@ -194,7 +188,7 @@
     [series addObject:serie];
     [secOne addObject:serie];
 
-    //MA10
+    // MA10
     serie = [[NSMutableDictionary alloc] init];
     data = [[NSMutableArray alloc] init];
     serie[@"name"] = @"ma10";
@@ -210,7 +204,7 @@
     [series addObject:serie];
     [secOne addObject:serie];
 
-    //MA30
+    // MA30
     serie = [[NSMutableDictionary alloc] init];
     data = [[NSMutableArray alloc] init];
     serie[@"name"] = @"ma30";
@@ -226,7 +220,7 @@
     [series addObject:serie];
     [secOne addObject:serie];
 
-    //MA60
+    // MA60
     serie = [[NSMutableDictionary alloc] init];
     data = [[NSMutableArray alloc] init];
     serie[@"name"] = /**/@"ma60";
@@ -243,7 +237,7 @@
     [secOne addObject:serie];
 
 
-    //VOL
+    // VOL
     serie = [[NSMutableDictionary alloc] init];
     data = [[NSMutableArray alloc] init];
     serie[@"name"] = @"vol";
@@ -276,7 +270,8 @@
         for(NSObject *indicator in indicators){
             if([indicator isKindOfClass:[NSArray class]]){
                 NSMutableArray *arr = [[NSMutableArray alloc] init];
-                for(NSDictionary *indic in indicator){
+                NSArray *indicatorArray = (NSArray *)indicator;
+                for(NSDictionary *indic in indicatorArray){
                     NSMutableDictionary *serie = [[NSMutableDictionary alloc] init];
                     [self setOptions:indic ForSerie:serie];
                     [arr addObject:serie];
@@ -413,6 +408,7 @@
     [self buttonPressed:sel];
 }
 
+#pragma mark - UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     NSMutableArray *data = [self.autoCompleteDelegate.items mutableCopy];
     self.autoCompleteDelegate.selectedItems = data;
@@ -462,7 +458,7 @@
     self.req_security_id = [[[searchBar text] componentsSeparatedByString:@"（"][1] componentsSeparatedByString:@"）"][0];
     [self getData];
 }
-
+#pragma mark - <#label#>
 -(BOOL)isCodesExpired{
     NSDate *date = [NSDate date];
     double now = [date timeIntervalSince1970];
@@ -480,15 +476,15 @@
     }
 }
 
--(void)getAutoCompleteData{
+- (void)getAutoCompleteData {
     NSString *securities =[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"securities" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
     NSMutableArray *data = [securities mutableObjectFromJSONString];
     self.autoCompleteDelegate.items = data;
 }
 
--(void)getData{
+- (void)getData {
     self.status.text = @"Loading...";
-    if(chartMode == 0){
+    if(self.chartMode == 0){
         [self.candleChart getSection:2].hidden = YES;
     }else{
         [self.candleChart getSection:2].hidden = NO;
@@ -504,8 +500,7 @@
     [request startAsynchronous];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
+- (void)requestFinished:(ASIHTTPRequest *)request {
     self.status.text = @"";
     NSMutableArray *data =[[NSMutableArray alloc] init];
     NSMutableArray *category =[[NSMutableArray alloc] init];
@@ -535,7 +530,7 @@
         return;
     }
 
-    if (chartMode == 0) {
+    if (self.chartMode == 0) {
         if([self.req_type isEqualToString:@"T"]){
             if(self.timer != nil)
                 [self.timer invalidate];
@@ -579,7 +574,7 @@
     [self generateData:dic From:data];
     [self setData:dic];
 
-    if(chartMode == 0){
+    if(self.chartMode == 0){
         [self setCategory:category];
     }else{
         NSMutableArray *cate = [[NSMutableArray alloc] init];
@@ -851,25 +846,20 @@
 - (void)requestFailed:(ASIHTTPRequest *)request{
     self.status.text = @"Error!";
 }
-
+#pragma mark - UIViewController (UIViewControllerRotation)
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration{
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
 
 }
-
+#pragma mark - Memory
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [self.timer invalidate];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

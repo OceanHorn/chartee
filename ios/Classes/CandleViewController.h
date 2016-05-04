@@ -10,38 +10,22 @@
 #import "YAxis.h"
 #import "AutoCompleteDelegate.h"
 
-@interface CandleViewController : UIViewController<UISearchBarDelegate> {
-    Chart *candleChart;
-    UITableView *autoCompleteView;
-    UIView *toolBar;
-    UIView *candleChartFreqView;
-    AutoCompleteDelegate *autoCompleteDelegate;
-    NSString *lastTime;
-    NSTimer *timer;
-    UILabel *security;
-    UILabel *status;
-    int tradeStatus;
-    int chartMode;
-    NSString *req_freq;
-    NSString *req_type;
-    NSString *req_url;
-    NSString *req_security_id;
-}
+@interface CandleViewController : UIViewController<UISearchBarDelegate>
 
-@property (nonatomic,retain) Chart *candleChart;
-@property (nonatomic,retain) UITableView *autoCompleteView;
-@property (nonatomic,retain) UIView *toolBar;
-@property (nonatomic,retain) UIView *candleChartFreqView;
-@property (nonatomic,retain) AutoCompleteDelegate *autoCompleteDelegate;
-@property (nonatomic,retain) NSTimer *timer;
-@property (nonatomic) int chartMode;
-@property (nonatomic) int tradeStatus;
-@property (nonatomic,retain) NSString *lastTime;
-@property (nonatomic,retain) UILabel *status;
-@property (nonatomic,retain) NSString *req_freq;
-@property (nonatomic,retain) NSString *req_type;
-@property (nonatomic,retain) NSString *req_url;
-@property (nonatomic,retain) NSString *req_security_id;
+@property (nonatomic, strong) Chart *candleChart;
+@property (nonatomic, strong) UITableView *autoCompleteView;
+@property (nonatomic, strong) UIView *toolBar;
+@property (nonatomic, strong) UIView *candleChartFreqView;
+@property (nonatomic, strong) AutoCompleteDelegate *autoCompleteDelegate;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) int chartMode;
+@property (nonatomic, assign) int tradeStatus;
+@property (nonatomic, copy) NSString *lastTime;
+@property (nonatomic, strong) UILabel *status;
+@property (nonatomic, copy) NSString *req_freq;
+@property (nonatomic, copy) NSString *req_type;
+@property (nonatomic, copy) NSString *req_url;
+@property (nonatomic, copy) NSString *req_security_id;
 
 -(void)initChart;
 -(void)getData;

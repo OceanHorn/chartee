@@ -25,7 +25,6 @@
 		26839FCD1B91A5FB008FD788 /* CacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839F951B91A5FB008FD788 /* CacheHelper.m */; };
 		26839FCE1B91A5FB008FD788 /* EncryptHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839F971B91A5FB008FD788 /* EncryptHelper.m */; };
 		26839FD01B91A5FB008FD788 /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839F9B1B91A5FB008FD788 /* ResourceHelper.m */; };
-		26839FE81B91A5FB008FD788 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839FCC1B91A5FB008FD788 /* MBProgressHUD.m */; };
 		26839FF21B91D158008FD788 /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839FEF1B91D158008FD788 /* NSString.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		26839FF31B91D158008FD788 /* Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 26839FF11B91D158008FD788 /* Date.m */; };
 		2683A0361B91D683008FD788 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2683A0351B91D683008FD788 /* libz.dylib */; };
@@ -117,8 +116,6 @@
 		26839F971B91A5FB008FD788 /* EncryptHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptHelper.m; sourceTree = "<group>"; };
 		26839F9A1B91A5FB008FD788 /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceHelper.h; sourceTree = "<group>"; };
 		26839F9B1B91A5FB008FD788 /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceHelper.m; sourceTree = "<group>"; };
-		26839FCB1B91A5FB008FD788 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		26839FCC1B91A5FB008FD788 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		26839FEE1B91D158008FD788 /* NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString.h; sourceTree = "<group>"; };
 		26839FEF1B91D158008FD788 /* NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString.m; sourceTree = "<group>"; };
 		26839FF01B91D158008FD788 /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
@@ -320,15 +317,6 @@
 			path = helper;
 			sourceTree = "<group>";
 		};
-		26839FB41B91A5FB008FD788 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				26839FCB1B91A5FB008FD788 /* MBProgressHUD.h */,
-				26839FCC1B91A5FB008FD788 /* MBProgressHUD.m */,
-			);
-			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
 		2683A04B1B91DC70008FD788 /* http */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,7 +349,6 @@
 		2683A06B1B91DDBB008FD788 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				26839FB41B91A5FB008FD788 /* MBProgressHUD */,
 				26839F931B91A5FB008FD788 /* helper */,
 				2683A04B1B91DC70008FD788 /* http */,
 				26839F761B919B26008FD788 /* AutoCompleteDelegate.h */,
@@ -528,7 +515,6 @@
 				26839F911B919B50008FD788 /* ColumnChartModel.m in Sources */,
 				26839F821B919B40008FD788 /* YAxis.m in Sources */,
 				26839FD01B91A5FB008FD788 /* ResourceHelper.m in Sources */,
-				26839FE81B91A5FB008FD788 /* MBProgressHUD.m in Sources */,
 				2683A0621B91DC70008FD788 /* ASIAuthenticationDialog.m in Sources */,
 				2683A04A1B91DB8D008FD788 /* JSONKit.m in Sources */,
 				26839FCE1B91A5FB008FD788 /* EncryptHelper.m in Sources */,
