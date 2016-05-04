@@ -208,17 +208,17 @@
 		26839F441B919AAE008FD788 = {
 			isa = PBXGroup;
 			children = (
-				2683A0431B91D6BA008FD788 /* SystemConfiguration.framework */,
-				2683A0411B91D6B4008FD788 /* MobileCoreServices.framework */,
-				2683A03F1B91D6AA008FD788 /* CoreGraphics.framework */,
-				2683A03D1B91D69F008FD788 /* UIKit.framework */,
-				2683A03B1B91D69B008FD788 /* Foundation.framework */,
-				2683A0391B91D68E008FD788 /* QuartzCore.framework */,
-				2683A0371B91D689008FD788 /* CFNetwork.framework */,
-				2683A0351B91D683008FD788 /* libz.dylib */,
 				26839F4F1B919AAE008FD788 /* Classes */,
-				26839F691B919AAF008FD788 /* charteeTests */,
 				26839F4E1B919AAE008FD788 /* Products */,
+				26839F691B919AAF008FD788 /* charteeTests */,
+				2683A0371B91D689008FD788 /* CFNetwork.framework */,
+				2683A03F1B91D6AA008FD788 /* CoreGraphics.framework */,
+				2683A03B1B91D69B008FD788 /* Foundation.framework */,
+				2683A0411B91D6B4008FD788 /* MobileCoreServices.framework */,
+				2683A0391B91D68E008FD788 /* QuartzCore.framework */,
+				2683A0431B91D6BA008FD788 /* SystemConfiguration.framework */,
+				2683A03D1B91D69F008FD788 /* UIKit.framework */,
+				2683A0351B91D683008FD788 /* libz.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,21 +234,20 @@
 		26839F4F1B919AAE008FD788 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2683A0981B91DFE4008FD788 /* resource */,
-				2683A06B1B91DDBB008FD788 /* lib */,
-				26839F791B919B34008FD788 /* chartee */,
 				26839F541B919AAE008FD788 /* AppDelegate.h */,
 				26839F551B919AAE008FD788 /* AppDelegate.m */,
+				26839F791B919B34008FD788 /* chartee */,
+				2683A06B1B91DDBB008FD788 /* lib */,
+				2683A0981B91DFE4008FD788 /* resource */,
 				26839F571B919AAE008FD788 /* CandleViewController.h */,
 				26839F581B919AAE008FD788 /* CandleViewController.m */,
-				2683A06C1B91DF9D008FD788 /* indicators.json */,
-				2683A06D1B91DF9D008FD788 /* securities.json */,
 				26839F5D1B919AAE008FD788 /* Images.xcassets */,
 				26839F5F1B919AAE008FD788 /* LaunchScreen.xib */,
+				2683A06C1B91DF9D008FD788 /* indicators.json */,
+				2683A06D1B91DF9D008FD788 /* securities.json */,
 				26839F501B919AAE008FD788 /* Supporting Files */,
 			);
-			name = Classes;
-			path = chartee;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		26839F501B919AAE008FD788 /* Supporting Files */ = {
@@ -257,14 +256,14 @@
 				26839F511B919AAE008FD788 /* Info.plist */,
 				26839F521B919AAE008FD788 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		26839F691B919AAF008FD788 /* charteeTests */ = {
 			isa = PBXGroup;
 			children = (
-				26839F6C1B919AAF008FD788 /* charteeTests.m */,
 				26839F6A1B919AAF008FD788 /* Supporting Files */,
+				26839F6C1B919AAF008FD788 /* charteeTests.m */,
 			);
 			path = charteeTests;
 			sourceTree = "<group>";
@@ -274,7 +273,7 @@
 			children = (
 				26839F6B1B919AAF008FD788 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		26839F791B919B34008FD788 /* chartee */ = {
@@ -288,7 +287,7 @@
 				26839F7E1B919B40008FD788 /* YAxis.h */,
 				26839F7F1B919B40008FD788 /* YAxis.m */,
 			);
-			name = chartee;
+			path = chartee;
 			sourceTree = "<group>";
 		};
 		26839F831B919B45008FD788 /* model */ = {
@@ -305,7 +304,7 @@
 				26839F8C1B919B50008FD788 /* LineChartModel.h */,
 				26839F8D1B919B50008FD788 /* LineChartModel.m */,
 			);
-			name = model;
+			path = model;
 			sourceTree = "<group>";
 		};
 		26839F931B91A5FB008FD788 /* helper */ = {
@@ -362,46 +361,46 @@
 		2683A06B1B91DDBB008FD788 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				26839FB41B91A5FB008FD788 /* MBProgressHUD */,
+				26839F931B91A5FB008FD788 /* helper */,
+				2683A04B1B91DC70008FD788 /* http */,
 				26839F761B919B26008FD788 /* AutoCompleteDelegate.h */,
 				26839F771B919B26008FD788 /* AutoCompleteDelegate.m */,
-				26839FEE1B91D158008FD788 /* NSString.h */,
-				26839FEF1B91D158008FD788 /* NSString.m */,
 				26839FF01B91D158008FD788 /* Date.h */,
 				26839FF11B91D158008FD788 /* Date.m */,
 				2683A0481B91DB8D008FD788 /* JSONKit.h */,
 				2683A0491B91DB8D008FD788 /* JSONKit.m */,
-				2683A04B1B91DC70008FD788 /* http */,
-				26839F931B91A5FB008FD788 /* helper */,
-				26839FB41B91A5FB008FD788 /* MBProgressHUD */,
+				26839FEE1B91D158008FD788 /* NSString.h */,
+				26839FEF1B91D158008FD788 /* NSString.m */,
 			);
-			name = lib;
+			path = lib;
 			sourceTree = "<group>";
 		};
 		2683A0981B91DFE4008FD788 /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				2683A0701B91DFDD008FD788 /* phone_candle_chart_selected.png */,
-				2683A0711B91DFDD008FD788 /* phone_candle_chart.png */,
-				2683A0721B91DFDD008FD788 /* phone_gray_bar.png */,
-				2683A0731B91DFDD008FD788 /* phone_k1d_selected.png */,
-				2683A0741B91DFDD008FD788 /* phone_k1d.png */,
-				2683A0751B91DFDD008FD788 /* phone_k1m_selected.png */,
-				2683A0761B91DFDD008FD788 /* phone_k1m.png */,
-				2683A0771B91DFDD008FD788 /* phone_k1w_selected.png */,
-				2683A0781B91DFDD008FD788 /* phone_k1w.png */,
-				2683A0791B91DFDD008FD788 /* pad_candle_chart_selected.png */,
 				2683A07A1B91DFDD008FD788 /* pad_candle_chart.png */,
+				2683A0791B91DFDD008FD788 /* pad_candle_chart_selected.png */,
 				2683A07B1B91DFDD008FD788 /* pad_gray_bar.png */,
-				2683A07C1B91DFDD008FD788 /* pad_k1d_selected.png */,
 				2683A07D1B91DFDD008FD788 /* pad_k1d.png */,
-				2683A07E1B91DFDD008FD788 /* pad_k1m_selected.png */,
+				2683A07C1B91DFDD008FD788 /* pad_k1d_selected.png */,
 				2683A07F1B91DFDD008FD788 /* pad_k1m.png */,
-				2683A0801B91DFDD008FD788 /* pad_k1w_selected.png */,
+				2683A07E1B91DFDD008FD788 /* pad_k1m_selected.png */,
 				2683A0811B91DFDD008FD788 /* pad_k1w.png */,
+				2683A0801B91DFDD008FD788 /* pad_k1w_selected.png */,
+				2683A0711B91DFDD008FD788 /* phone_candle_chart.png */,
+				2683A0701B91DFDD008FD788 /* phone_candle_chart_selected.png */,
+				2683A0721B91DFDD008FD788 /* phone_gray_bar.png */,
+				2683A0741B91DFDD008FD788 /* phone_k1d.png */,
+				2683A0731B91DFDD008FD788 /* phone_k1d_selected.png */,
+				2683A0761B91DFDD008FD788 /* phone_k1m.png */,
+				2683A0751B91DFDD008FD788 /* phone_k1m_selected.png */,
+				2683A0781B91DFDD008FD788 /* phone_k1w.png */,
+				2683A0771B91DFDD008FD788 /* phone_k1w_selected.png */,
 				2683A0821B91DFDD008FD788 /* toolbarbg.png */,
 				2683A0831B91DFDD008FD788 /* toolbarbg@2x.png */,
 			);
-			name = resource;
+			path = resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +580,7 @@
 				26839F601B919AAE008FD788 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -678,7 +678,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = chartee/Info.plist;
+				INFOPLIST_FILE = "Classes/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -694,7 +694,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = chartee/Info.plist;
+				INFOPLIST_FILE = "Classes/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -712,7 +712,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = charteeTests/Info.plist;
+				INFOPLIST_FILE = "charteeTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chartee.app/chartee";
@@ -727,7 +727,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = charteeTests/Info.plist;
+				INFOPLIST_FILE = "charteeTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chartee.app/chartee";
