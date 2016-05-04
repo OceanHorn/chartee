@@ -619,7 +619,7 @@
         }
         dic[@"ma10"] = ma10;
 
-        //MA 30
+        // MA 30
         NSMutableArray *ma30 = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float val = 0;
@@ -633,7 +633,7 @@
         }
         dic[@"ma30"] = ma30;
 
-        //MA 60
+        // MA 60
         NSMutableArray *ma60 = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float val = 0;
@@ -647,7 +647,7 @@
         }
         dic[@"ma60"] = ma60;
 
-        //RSI6
+        // RSI6
         NSMutableArray *rsi6 = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float incVal  = 0;
