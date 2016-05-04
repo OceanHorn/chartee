@@ -11,19 +11,19 @@
 
 @interface Section : NSObject 
 
-@property(nonatomic) bool   hidden;
-@property(nonatomic) bool   isInitialized;
-@property(nonatomic) bool   paging;
-@property(nonatomic) int    selectedIndex;
-@property(nonatomic) CGRect frame;
-@property(nonatomic) float  paddingLeft;
-@property(nonatomic) float  paddingRight;
-@property(nonatomic) float  paddingTop;
-@property(nonatomic) float  paddingBottom;
-@property(nonatomic,retain) NSMutableArray *padding;
-@property(nonatomic,retain) NSMutableArray *series;
-@property (nonatomic,retain) NSMutableArray *yAxises;
-@property (nonatomic,retain) NSMutableArray *xAxises;
+@property (nonatomic, assign) bool   hidden;
+@property (nonatomic, assign) bool   isInitialized;
+@property (nonatomic, assign) bool   paging;
+@property (nonatomic, assign) int    selectedIndex;
+@property (nonatomic, assign) CGRect frame;
+@property (nonatomic, assign) float  paddingLeft;
+@property (nonatomic, assign) float  paddingRight;
+@property (nonatomic, assign) float  paddingTop;
+@property (nonatomic, assign) float  paddingBottom;
+@property (nonatomic, strong) NSMutableArray *padding;
+@property (nonatomic, strong) NSMutableArray *series;
+@property (nonatomic, strong) NSMutableArray *yAxises;
+@property (nonatomic, strong) NSMutableArray *xAxises;
 
 -(void)addYAxis:(int)pos;
 -(void)removeYAxis:(int)index;

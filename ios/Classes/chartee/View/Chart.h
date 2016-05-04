@@ -19,29 +19,29 @@
 
 @interface Chart : UIView
 
-@property (nonatomic)        bool  enableSelection;
-@property (nonatomic)        bool  isInitialized;
-@property (nonatomic)        bool  isSectionInitialized;
-@property (nonatomic)        float borderWidth;
-@property (nonatomic)        float plotWidth;
-@property (nonatomic)        float plotPadding;
-@property (nonatomic)        float plotCount;
-@property (nonatomic)        float paddingLeft;
-@property (nonatomic)        float paddingRight;
-@property (nonatomic)        float paddingTop;
-@property (nonatomic)        float paddingBottom;
-@property (nonatomic)        int   rangeFrom;
-@property (nonatomic)        int   rangeTo;
-@property (nonatomic)        int   range;
-@property (nonatomic)        int   selectedIndex;
-@property (nonatomic)        float touchFlag;
-@property (nonatomic)        float touchFlagTwo;
+@property (nonatomic, assign) bool enableSelection;
+@property (nonatomic, assign) bool isInitialized;
+@property (nonatomic, assign) bool isSectionInitialized;
+@property (nonatomic, assign) float borderWidth;
+@property (nonatomic, assign) float plotWidth;
+@property (nonatomic, assign) float plotPadding;
+@property (nonatomic, assign) float plotCount;
+@property (nonatomic, assign) float paddingLeft;
+@property (nonatomic, assign) float paddingRight;
+@property (nonatomic, assign) float paddingTop;
+@property (nonatomic, assign) float paddingBottom;
+@property (nonatomic, assign) int rangeFrom;
+@property (nonatomic, assign) int rangeTo;
+@property (nonatomic, assign) int range;
+@property (nonatomic, assign) int selectedIndex;
+@property (nonatomic, assign) float touchFlag;
+@property (nonatomic, assign) float touchFlagTwo;
 @property (nonatomic,retain) NSMutableArray *padding;
 @property (nonatomic,retain) NSMutableArray *series;
 @property (nonatomic,retain) NSMutableArray *sections;
-@property (nonatomic,retain) NSMutableArray  *ratios;
+@property (nonatomic,retain) NSMutableArray *ratios;
 @property (nonatomic,retain) NSMutableDictionary *models;
-@property (nonatomic,retain) UIColor  *borderColor;
+@property (nonatomic,retain) UIColor *borderColor;
 @property (nonatomic,retain) NSString *title;
 
 -(float)getLocalY:(float)val withSection:(int)sectionIndex withAxis:(int)yAxisIndex;

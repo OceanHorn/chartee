@@ -18,7 +18,7 @@
 	return self;
 }
 
--(void)reset {
+- (void)reset {
 	self.isUsed = NO;
 	self.min = MAXFLOAT;
 	self.max = MAXFLOAT;
