@@ -5,9 +5,9 @@
 //
 
 #import "CandleViewController.h"
-#import "ASIHTTPRequest.h"
+//#import "ASIHTTPRequest.h"
 #import "ResourceHelper.h"
-#import "JSONKit.h"
+//#import "JSONKit.h"
 #import <QuartzCore/QuartzCore.h>
 
 #import "YFURLSessionManager.h"
@@ -267,7 +267,8 @@
     NSString *indicatorsString =[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"indicators" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
 
     if(indicatorsString != nil){
-        NSArray *indicators = [indicatorsString objectFromJSONString];
+        NSArray *indicators = [NSJSONSerialization JSONObjectWithData:[indicatorsString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+//        NSArray *indicators = [indicatorsString objectFromJSONString];
         for(NSObject *indicator in indicators){
             if([indicator isKindOfClass:[NSArray class]]){
                 NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -479,7 +480,8 @@
 
 - (void)getAutoCompleteData {
     NSString *securities =[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"securities" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
-    NSMutableArray *data = [securities mutableObjectFromJSONString];
+    NSMutableArray *data = [NSJSONSerialization JSONObjectWithData:[securities dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+//    NSMutableArray *data = [securities mutableObjectFromJSONString];
     self.autoCompleteDelegate.items = data;
 }
 
@@ -600,6 +602,9 @@
 //
 //    NSString *content = [request responseString];
 //    [self dataTransform:content];
+//}
+//- (void)requestFailed:(ASIHTTPRequest *)request{
+//    self.status.text = @"Error!";
 //}
 
 -(void)generateData:(NSMutableDictionary *)dic From:(NSArray *)data{
@@ -858,9 +863,6 @@
 
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request{
-    self.status.text = @"Error!";
-}
 #pragma mark - UIViewController (UIViewControllerRotation)
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
