@@ -1,0 +1,12 @@
+# Uncomment this line to define a global platform for your project
+ platform :ios, '8.0'
+# Uncomment this line if you're using Swift
+ use_frameworks!
+
+target ‘chartee' do
+    pod 'AFNetworking', '~> 3.1.0'
+    #pod 'ASIHTTPRequest', '~> 1.8.2'
+    #pod 'JSONKit', '~> 1.5pre'
+    #pod 'MBProgressHUD'
+end
+
