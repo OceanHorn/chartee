@@ -86,7 +86,10 @@
 					[self setValuesForYAxis:se[i]];
 				}
 			}else {
-				[self setValuesForYAxis:serie];
+                if ([serie isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *serieDict = (NSDictionary *)serie;
+                    [self setValuesForYAxis:serieDict];
+                }
 			}
 		}else{
 			for(int sIndex=0;sIndex<[sec.series count];sIndex++){
@@ -97,7 +100,10 @@
 						[self setValuesForYAxis:se[i]];
 					}
 				}else {
-					[self setValuesForYAxis:serie];
+                    if ([serie isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *serieDict = (NSDictionary *)serie;
+                        [self setValuesForYAxis:serieDict];
+                    }
 				}
 			}
 		}
@@ -647,6 +653,7 @@
 }
 
 -(void)initModels{
+    
     //line
     ChartModel *model = [[LineChartModel alloc] init];
     [self addModel:model withName:@"line"];

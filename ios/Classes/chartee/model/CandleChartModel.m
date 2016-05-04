@@ -302,7 +302,10 @@
 
 				CGContextSetShouldAntialias(context, YES);
 				CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 0.8);
-				CGSize size = [category[chart.selectedIndex] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+                
+//                CGSize size = [category[chart.selectedIndex] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+                NSDictionary *attrs = @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:12.0]};
+				CGSize size = [category[chart.selectedIndex] sizeWithAttributes:attrs];
 
 				int x = ix+chart.plotWidth/2;
 				int y = sec.frame.origin.y+sec.paddingTop;
@@ -311,7 +314,8 @@
 				}
 				CGContextFillRect (context, CGRectMake (x, y, size.width+4,size.height+2));
 				CGContextSetRGBFillColor(context, 0.8, 0.8, 0.8, 1.0);
-				[category[chart.selectedIndex] drawAtPoint:CGPointMake(x + 2, y + 1) withFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+                
+				[category[chart.selectedIndex] drawAtPoint:CGPointMake(x + 2, y + 1) withAttributes:attrs];
 				CGContextSetShouldAntialias(context, NO);
 			}
 		}
@@ -332,7 +336,8 @@
 
 				CGContextSetShouldAntialias(context, YES);
 				CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 0.8);
-				CGSize size = [category[chart.selectedIndex] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+                NSDictionary *attrs = @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:12.0]};
+				CGSize size = [category[chart.selectedIndex] sizeWithAttributes:attrs];
 
 				int x = ix+chart.plotWidth/2;
 				int y = sec.frame.origin.y+sec.paddingTop;
@@ -341,7 +346,7 @@
 				}
 				CGContextFillRect (context, CGRectMake (x, y, size.width+4,size.height+2));
 				CGContextSetRGBFillColor(context, 0.8, 0.8, 0.8, 1.0);
-				[category[chart.selectedIndex] drawAtPoint:CGPointMake(x + 2, y + 1) withFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
+				[category[chart.selectedIndex] drawAtPoint:CGPointMake(x + 2, y + 1) withAttributes:attrs];
 				CGContextSetShouldAntialias(context, NO);
 			}
 		}
