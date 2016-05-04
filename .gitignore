@@ -1,4 +1,4 @@
- Xcode
+# Xcode
 .DS_Store
 */build/*
 *.pbxuser
@@ -15,17 +15,6 @@ profile
 DerivedData
 .idea/
 *.hmap
-*.xccheckout
 
 #CocoaPods
 Pods
-
-*/project.pbxproj.orig
-*/project.pbxproj.REMOTE.*
-*/project.pbxproj.LOCAL.*
-*/project.pbxproj.BASE.*
-*/project.pbxproj.BACKUP.*
-*/*/Main.storyboard.REMOTE.*
-*/*/Main.storyboard.LOCAL.*
-*/*/Main.storyboard.BASE.*
-*/*/Main.storyboard.BACKUP.*
