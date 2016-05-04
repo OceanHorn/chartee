@@ -68,6 +68,8 @@
 		FE8DA50B1CD9CF03008DDB2D /* Chart.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8DA5061CD9CF03008DDB2D /* Chart.m */; };
 		FE8DA50C1CD9CF03008DDB2D /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8DA5081CD9CF03008DDB2D /* Section.m */; };
 		FE8DA50D1CD9CF03008DDB2D /* YAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8DA50A1CD9CF03008DDB2D /* YAxis.m */; };
+		FE8DA5111CD9FE86008DDB2D /* YFSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8DA5101CD9FE86008DDB2D /* YFSessionManager.m */; };
+		FE8DA5141CDA083A008DDB2D /* YFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8DA5131CDA083A008DDB2D /* YFURLSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +180,10 @@
 		FE8DA5081CD9CF03008DDB2D /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		FE8DA5091CD9CF03008DDB2D /* YAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxis.h; sourceTree = "<group>"; };
 		FE8DA50A1CD9CF03008DDB2D /* YAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxis.m; sourceTree = "<group>"; };
+		FE8DA50F1CD9FE86008DDB2D /* YFSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFSessionManager.h; sourceTree = "<group>"; };
+		FE8DA5101CD9FE86008DDB2D /* YFSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFSessionManager.m; sourceTree = "<group>"; };
+		FE8DA5121CDA083A008DDB2D /* YFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFURLSessionManager.h; sourceTree = "<group>"; };
+		FE8DA5131CDA083A008DDB2D /* YFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFURLSessionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +357,7 @@
 		2683A06B1B91DDBB008FD788 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				FE8DA50E1CD9FE23008DDB2D /* NetworkTool */,
 				26839F931B91A5FB008FD788 /* helper */,
 				2683A04B1B91DC70008FD788 /* http */,
 				26839F761B919B26008FD788 /* AutoCompleteDelegate.h */,
@@ -420,6 +427,17 @@
 				FE8DA50A1CD9CF03008DDB2D /* YAxis.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FE8DA50E1CD9FE23008DDB2D /* NetworkTool */ = {
+			isa = PBXGroup;
+			children = (
+				FE8DA50F1CD9FE86008DDB2D /* YFSessionManager.h */,
+				FE8DA5101CD9FE86008DDB2D /* YFSessionManager.m */,
+				FE8DA5121CDA083A008DDB2D /* YFURLSessionManager.h */,
+				FE8DA5131CDA083A008DDB2D /* YFURLSessionManager.m */,
+			);
+			path = NetworkTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,6 +614,7 @@
 			files = (
 				26839F8F1B919B50008FD788 /* CandleChartModel.m in Sources */,
 				26839F911B919B50008FD788 /* ColumnChartModel.m in Sources */,
+				FE8DA5141CDA083A008DDB2D /* YFURLSessionManager.m in Sources */,
 				26839FD01B91A5FB008FD788 /* ResourceHelper.m in Sources */,
 				2683A0621B91DC70008FD788 /* ASIAuthenticationDialog.m in Sources */,
 				2683A04A1B91DB8D008FD788 /* JSONKit.m in Sources */,
@@ -607,6 +626,7 @@
 				26839F561B919AAE008FD788 /* AppDelegate.m in Sources */,
 				26839F921B919B50008FD788 /* LineChartModel.m in Sources */,
 				2683A0691B91DC70008FD788 /* ASINetworkQueue.m in Sources */,
+				FE8DA5111CD9FE86008DDB2D /* YFSessionManager.m in Sources */,
 				26839F781B919B26008FD788 /* AutoCompleteDelegate.m in Sources */,
 				26839F901B919B50008FD788 /* ChartModel.m in Sources */,
 				26839FF31B91D158008FD788 /* Date.m in Sources */,

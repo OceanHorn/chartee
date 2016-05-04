@@ -10,6 +10,7 @@
 #import "JSONKit.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "YFURLSessionManager.h"
 
 @interface CandleViewController ()
 
@@ -489,23 +490,29 @@
     }else{
         [self.candleChart getSection:2].hidden = NO;
     }
-    NSString *reqURL = [[NSString alloc] initWithFormat:self.req_url,self.req_security_id,self.req_freq];
-    NSLog(@"url:%@",reqURL);
+//    NSString *reqURL = [[NSString alloc] initWithFormat:self.req_url,self.req_security_id,self.req_freq];
+//    NSLog(@"url:%@",reqURL);
 
-    NSURL *url = [NSURL URLWithString:[reqURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setTimeOutSeconds:5];
-    [request setDelegate:self];
-    [request startAsynchronous];
+//    NSURL *url = [NSURL URLWithString:[reqURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    [[YFURLSessionManager sharedURLSessionManager] fetch:self.req_security_id dataType:YFURLRequestDataTypeDay success:^(NSString *content) {
+        self.status.text = @"";
+        [self dataTransform:content];
+    } failure:^(NSError *error) {
+        self.status.text = @"";
+        NSLog(@"error:%@", error);
+    }];
+    
+//    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//    [request setTimeOutSeconds:5];
+//    [request setDelegate:self];
+//    [request startAsynchronous];
 }
-
-- (void)requestFinished:(ASIHTTPRequest *)request {
-    self.status.text = @"";
+- (void)dataTransform:(NSString *)content {
+    
     NSMutableArray *data =[[NSMutableArray alloc] init];
     NSMutableArray *category =[[NSMutableArray alloc] init];
-
-    NSString *content = [request responseString];
+    
     NSArray *lines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     NSInteger idx;
     for (idx = lines.count-1; idx > 0; idx--) {
@@ -513,9 +520,9 @@
         if([line isEqualToString:@""]){
             continue;
         }
-        NSArray   *arr = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
+        NSArray *arr = [line componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
         [category addObject:arr[0]];
-
+        
         NSMutableArray *item =[[NSMutableArray alloc] init];
         [item addObject:arr[1]];
         [item addObject:arr[4]];
@@ -524,21 +531,21 @@
         [item addObject:arr[5]];
         [data addObject:item];
     }
-
+    
     if(data.count==0){
         self.status.text = @"Error!";
         return;
     }
-
+    
     if (self.chartMode == 0) {
         if([self.req_type isEqualToString:@"T"]){
             if(self.timer != nil)
                 [self.timer invalidate];
-
+            
             [self.candleChart reset];
             [self.candleChart clearData];
             [self.candleChart clearCategory];
-
+            
             if([self.req_freq hasSuffix:@"m"]){
                 self.req_type = @"L";
                 self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getData) userInfo:nil repeats:YES];
@@ -567,13 +574,13 @@
         [self.candleChart clearData];
         [self.candleChart clearCategory];
     }
-
+    
     self.lastTime = [category lastObject];
-
+    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [self generateData:dic From:data];
     [self setData:dic];
-
+    
     if(self.chartMode == 0){
         [self setCategory:category];
     }else{
@@ -583,9 +590,17 @@
         }
         [self setCategory:cate];
     }
-
+    
     [self.candleChart setNeedsDisplay];
 }
+#pragma mark - ASIHTTPRequest delegates
+//- (void)requestFinished:(ASIHTTPRequest *)request {
+//    self.status.text = @"";
+//   
+//
+//    NSString *content = [request responseString];
+//    [self dataTransform:content];
+//}
 
 -(void)generateData:(NSMutableDictionary *)dic From:(NSArray *)data{
     if(self.chartMode == 1){
