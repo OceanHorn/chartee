@@ -17,32 +17,7 @@
 
 @class ChartModel;
 
-@interface Chart : UIView {
-	bool  enableSelection;
-	bool  isInitialized;
-	bool  isSectionInitialized;
-	float borderWidth;
-	float plotWidth;
-	float plotPadding;
-	float plotCount;
-	float paddingLeft;
-	float paddingRight;
-	float paddingTop;
-	float paddingBottom;
-	int   rangeFrom;
-	int   rangeTo;
-	int   range;
-	int   selectedIndex;
-	float touchFlag;
-	float touchFlagTwo;
-	NSMutableArray *padding;
-	NSMutableArray *series;
-	NSMutableArray *sections;
-	NSMutableArray *ratios;
-    NSMutableDictionary *models;
-	UIColor        *borderColor;
-	NSString       *title;
-}
+@interface Chart : UIView
 
 @property (nonatomic)        bool  enableSelection;
 @property (nonatomic)        bool  isInitialized;

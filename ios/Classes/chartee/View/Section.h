@@ -9,21 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YAxis.h"
 
-@interface Section : NSObject {
-	bool hidden;
-	bool isInitialized;
-	bool paging;
-	int  selectedIndex;
-	CGRect frame;
-	float paddingLeft;
-	float paddingRight;
-	float paddingTop;
-	float paddingBottom;
-	NSMutableArray *padding;
-	NSMutableArray *series;
-	NSMutableArray *yAxises;
-	NSMutableArray *xAxises;
-}
+@interface Section : NSObject 
 
 @property(nonatomic) bool   hidden;
 @property(nonatomic) bool   isInitialized;

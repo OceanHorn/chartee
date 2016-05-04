@@ -12,31 +12,6 @@
 
 @implementation Chart
 
-@synthesize enableSelection;
-@synthesize isInitialized;
-@synthesize isSectionInitialized;
-@synthesize borderColor;
-@synthesize borderWidth;
-@synthesize plotWidth;
-@synthesize plotPadding;
-@synthesize plotCount;
-@synthesize paddingLeft;
-@synthesize paddingRight;
-@synthesize paddingTop;
-@synthesize paddingBottom;
-@synthesize padding;
-@synthesize selectedIndex;
-@synthesize touchFlag;
-@synthesize touchFlagTwo;
-@synthesize rangeFrom;
-@synthesize rangeTo;
-@synthesize range;
-@synthesize series;
-@synthesize sections;
-@synthesize ratios;
-@synthesize models;
-@synthesize title;
-
 -(float)getLocalY:(float)val withSection:(int)sectionIndex withAxis:(int)yAxisIndex{
 	Section *sec = [self sections][sectionIndex];
 	YAxis *yaxis = sec.yAxises[yAxisIndex];
@@ -50,7 +25,7 @@
     return fra.size.height - (fra.size.height-sec.paddingTop)* (val-min)/(max-min)+fra.origin.y;
 }
 
-- (void)initChart{
+- (void)initChart {
 	if(!self.isInitialized){
 		self.plotPadding = 1.f;
 		if(self.padding != nil){
@@ -62,8 +37,8 @@
 
 		if(self.series!=nil){
 			self.rangeTo = [[[self series][0] objectForKey:@"data"] count];
-			if(rangeTo-range >= 0){
-				self.rangeFrom = rangeTo-range;
+			if(self.rangeTo-self.range >= 0){
+				self.rangeFrom = self.rangeTo-self.range;
 			}else{
 			    self.rangeFrom = 0;
 			}
@@ -173,13 +148,13 @@
     [model setValuesForYAxis:self serie:serie];
 }
 
--(void)drawChart{
+-(void)drawChart {
     for(int secIndex=0;secIndex<self.sections.count;secIndex++){
 		Section *sec = self.sections[secIndex];
 		if(sec.hidden){
 		    continue;
 		}
-		plotWidth = (sec.frame.size.width-sec.paddingLeft)/(self.rangeTo-self.rangeFrom);
+		self.plotWidth = (sec.frame.size.width-sec.paddingLeft)/(self.rangeTo-self.rangeFrom);
 		for(int sIndex=0;sIndex<sec.series.count;sIndex++){
 			NSObject *serie = sec.series[sIndex];
 
@@ -195,7 +170,10 @@
 							[self drawSerie:se[i]];
 						}
 					}else{
-						[self drawSerie:serie];
+                        if ([serie isKindOfClass:[NSDictionary class]]) {
+                            NSDictionary *serieDict = (NSDictionary *)serie;
+                            [self drawSerie:[serieDict mutableCopy]];
+                        }
 					}
 					break;
 				}
@@ -206,7 +184,10 @@
 						[self drawSerie:se[i]];
 					}
 				}else{
-					[self drawSerie:serie];
+                    if ([serie isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *serieDict = (NSDictionary *)serie;
+                        [self drawSerie:[serieDict mutableCopy]];
+                    }
 				}
 			}
 		}
@@ -234,7 +215,10 @@
 							[self setLabel:label forSerie:se[i]];
 						}
 					}else{
-						[self setLabel:label forSerie:serie];
+                        if ([serie isKindOfClass:[NSDictionary class]]) {
+                            NSDictionary *serieDict = (NSDictionary *)serie;
+                            [self setLabel:label forSerie:[serieDict mutableCopy]];
+                        }
 					}
 				}
 			}else{
@@ -244,7 +228,10 @@
 						[self setLabel:label forSerie:se[i]];
 					}
 				}else{
-					[self setLabel:label forSerie:serie];
+                    if ([serie isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *serieDict = (NSDictionary *)serie;
+                        [self setLabel:label forSerie:[serieDict mutableCopy]];
+                    }
 				}
 			}
 			for(int j=0;j<label.count;j++){
@@ -255,14 +242,15 @@
 				CGContextRef context = UIGraphicsGetCurrentContext();
 				CGContextSetShouldAntialias(context, YES);
 				CGContextSetRGBFillColor(context, [colors[0] floatValue], [colors[1] floatValue], [colors[2] floatValue], 1.0);
-				[text drawAtPoint:CGPointMake(sec.frame.origin.x+sec.paddingLeft+2+w,sec.frame.origin.y) withFont:[UIFont systemFontOfSize: 14]];
-				w += [text sizeWithFont:[UIFont systemFontOfSize:14]].width;
+                NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+				[text drawAtPoint:CGPointMake(sec.frame.origin.x+sec.paddingLeft+2+w,sec.frame.origin.y) withAttributes:attrs];
+				w += [text sizeWithAttributes:attrs].width;
 			}
 		}
 	}
 }
 
--(void)setLabel:(NSMutableArray *)label forSerie:(NSMutableDictionary *) serie{
+-(void)setLabel:(NSMutableArray *)label forSerie:(NSMutableDictionary *)serie {
 	NSString   *type  = serie[@"type"];
     ChartModel *model = [self getModel:type];
     [model setLabel:self label:label forSerie:serie];
@@ -281,7 +269,7 @@
     }
 }
 
--(void)drawYAxis{
+-(void)drawYAxis {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetShouldAntialias(context, NO );
 	CGContextSetLineWidth(context, 1.0f);
@@ -319,7 +307,10 @@
             }
             CGContextStrokePath(context);
 
-			[[@"" stringByAppendingFormat:format,yaxis.baseValue] drawAtPoint:CGPointMake(sec.frame.origin.x-1,baseY-7) withFont:[UIFont systemFontOfSize: 12]];
+//			[[@"" stringByAppendingFormat:format,yaxis.baseValue] drawAtPoint:CGPointMake(sec.frame.origin.x-1,baseY-7) withFont:[UIFont systemFontOfSize: 12]];
+            
+            NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+            [[@"" stringByAppendingFormat:format,yaxis.baseValue] drawAtPoint:CGPointMake(sec.frame.origin.x-1,baseY-7) withAttributes:attrs];
 
 			CGContextSetStrokeColorWithColor(context, [[UIColor alloc] initWithRed:0.15 green:0.15 blue:0.15 alpha:1.0].CGColor);
 			CGContextMoveToPoint(context,sec.frame.origin.x+sec.paddingLeft,baseY);
@@ -343,7 +334,8 @@
 					}
                     CGContextStrokePath(context);
 
-					[[@"" stringByAppendingFormat:format,yaxis.baseValue+i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withFont:[UIFont systemFontOfSize: 12]];
+                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+					[[@"" stringByAppendingFormat:format,yaxis.baseValue+i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withAttributes:attrs];
 
 					if(yaxis.baseValue + i*step < yaxis.max){
 						CGContextSetStrokeColorWithColor(context, [[UIColor alloc] initWithRed:0.15 green:0.15 blue:0.15 alpha:1.0].CGColor);
@@ -365,7 +357,8 @@
 					}
                     CGContextStrokePath(context);
 
-					[[@"" stringByAppendingFormat:format,yaxis.baseValue-i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withFont:[UIFont systemFontOfSize: 12]];
+                    NSDictionary *attrs = @{NSFontAttributeName:[UIFont systemFontOfSize: 12]};
+					[[@"" stringByAppendingFormat:format,yaxis.baseValue-i*step] drawAtPoint:CGPointMake(sec.frame.origin.x-1,iy-7) withAttributes:attrs];
 
 					if(yaxis.baseValue - i*step > yaxis.min){
 						CGContextSetStrokeColorWithColor(context, [[UIColor alloc] initWithRed:0.15 green:0.15 blue:0.15 alpha:1.0].CGColor);
@@ -381,7 +374,7 @@
 	CGContextSetLineDash (context,0,NULL,0);
 }
 
--(void)drawXAxis{
+- (void)drawXAxis {
     CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetShouldAntialias(context, NO);
 	CGContextSetLineWidth(context, 1.f);
@@ -400,7 +393,7 @@
 	CGContextStrokePath(context);
 }
 
--(void) setSelectedIndexByPoint:(CGPoint) point{
+-(void)setSelectedIndexByPoint:(CGPoint) point{
 
 	if([self getIndexOfSection:point] == -1){
 		return;
@@ -408,7 +401,7 @@
 	Section *sec = self.sections[[self getIndexOfSection:point]];
 
 	for(int i=self.rangeFrom;i<self.rangeTo;i++){
-		if((plotWidth*(i-self.rangeFrom))<=(point.x-sec.paddingLeft-self.paddingLeft) && (point.x-sec.paddingLeft-self.paddingLeft)<plotWidth*((i-self.rangeFrom)+1)){
+        if((self.plotWidth*(i-self.rangeFrom))<=(point.x-sec.paddingLeft-self.paddingLeft) && (point.x-sec.paddingLeft-self.paddingLeft)<self.plotWidth*((i-self.rangeFrom)+1)){
 			if (self.selectedIndex != i) {
 				self.selectedIndex=i;
 				[self setNeedsDisplay];
@@ -717,7 +710,7 @@
 				[self setSelectedIndexByPoint:[touch locationInView:self]];
 			int interval = 5;
 			if([touch locationInView:self].x < sec.paddingLeft){
-				if(abs([touch locationInView:self].y - self.touchFlag) >= MIN_INTERVAL){
+				if(fabsf([touch locationInView:self].y - self.touchFlag) >= MIN_INTERVAL){
 					if([touch locationInView:self].y - self.touchFlag > 0){
 						if(self.plotCount > (self.rangeTo-self.rangeFrom)){
 							if(self.rangeFrom - interval >= 0){
@@ -804,8 +797,8 @@
 					[self setNeedsDisplay];
 				}
 			}else {
-				if(abs(abs(currFlagTwo-currFlag)-abs(self.touchFlagTwo-self.touchFlag)) >= MIN_INTERVAL){
-					if(abs(currFlagTwo-currFlag)-abs(self.touchFlagTwo-self.touchFlag) > 0){
+				if(fabsf(fabsf(currFlagTwo-currFlag)-fabsf(self.touchFlagTwo-self.touchFlag)) >= MIN_INTERVAL){
+					if(fabsf(currFlagTwo-currFlag)-fabsf(self.touchFlagTwo-self.touchFlag) > 0){
 						if(self.plotCount>self.rangeTo-self.rangeFrom){
 							if(self.rangeFrom + interval < self.rangeTo){
 								self.rangeFrom += interval;

@@ -672,7 +672,7 @@
         }
         dic[@"rsi6"] = rsi6;
 
-        //RSI12
+        // RSI12
         NSMutableArray *rsi12 = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float incVal  = 0;
@@ -696,7 +696,7 @@
         }
         dic[@"rsi12"] = rsi12;
 
-        //WR
+        // WR
         NSMutableArray *wr = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float h  = [[data[i] objectAtIndex:2] floatValue];
@@ -719,7 +719,7 @@
         }
         dic[@"wr"] = wr;
 
-        //KDJ
+        // KDJ
         NSMutableArray *kdj_k = [[NSMutableArray alloc] init];
         NSMutableArray *kdj_d = [[NSMutableArray alloc] init];
         NSMutableArray *kdj_j = [[NSMutableArray alloc] init];
@@ -763,7 +763,7 @@
         dic[@"kdj_d"] = kdj_d;
         dic[@"kdj_j"] = kdj_j;
 
-        //VR
+        // VR
         NSMutableArray *vr = [[NSMutableArray alloc] init];
         for(int i = 60;i < data.count;i++){
             float inc = 0;
@@ -790,14 +790,14 @@
         dic[@"vr"] = vr;
 
     }else{
-        //price
+        // price
         NSMutableArray *price = [[NSMutableArray alloc] init];
         for(int i = 0;i < data.count;i++){
             [price addObject:data[i]];
         }
         dic[@"price"] = price;
 
-        //VOL
+        // VOL
         NSMutableArray *vol = [[NSMutableArray alloc] init];
         for(int i = 0;i < data.count;i++){
             NSMutableArray *item = [[NSMutableArray alloc] init];

@@ -10,20 +10,7 @@
 
 @implementation YAxis
 
-@synthesize isUsed;
-@synthesize frame;
-@synthesize max;
-@synthesize min;
-@synthesize ext;
-@synthesize baseValue;
-@synthesize baseValueSticky;
-@synthesize symmetrical;
-@synthesize paddingTop;
-@synthesize tickInterval;
-@synthesize pos;
-@synthesize decimal;
-
-- (id)init{
+- (instancetype)init {
 	self = [super init];
     if (self) {
 		[self reset];
@@ -31,7 +18,7 @@
 	return self;
 }
 
--(void)reset{
+-(void)reset {
 	self.isUsed = NO;
 	self.min = MAXFLOAT;
 	self.max = MAXFLOAT;

@@ -9,20 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface YAxis : NSObject {
-	bool isUsed;
-	CGRect frame;
-	float max;
-	float min;
-	float ext;
-	float baseValue;
-	bool  baseValueSticky;
-	bool  symmetrical;
-	float paddingTop;
-	int tickInterval;
-	int pos;
-	int decimal;
-}
+@interface YAxis : NSObject
 
 @property(nonatomic) bool isUsed;
 

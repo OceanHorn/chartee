@@ -292,12 +292,12 @@
 		26839F831B919B45008FD788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26839F881B919B50008FD788 /* ChartModel.h */,
+				26839F891B919B50008FD788 /* ChartModel.m */,
 				26839F841B919B50008FD788 /* AreaChartModel.h */,
 				26839F851B919B50008FD788 /* AreaChartModel.m */,
 				26839F861B919B50008FD788 /* CandleChartModel.h */,
 				26839F871B919B50008FD788 /* CandleChartModel.m */,
-				26839F881B919B50008FD788 /* ChartModel.h */,
-				26839F891B919B50008FD788 /* ChartModel.m */,
 				26839F8A1B919B50008FD788 /* ColumnChartModel.h */,
 				26839F8B1B919B50008FD788 /* ColumnChartModel.m */,
 				26839F8C1B919B50008FD788 /* LineChartModel.h */,
