@@ -44,6 +44,7 @@
 @property (nonatomic,retain) UIColor *borderColor;
 @property (nonatomic,retain) NSString *title;
 
+
 -(float)getLocalY:(float)val withSection:(int)sectionIndex withAxis:(int)yAxisIndex;
 -(void)setSelectedIndexByPoint:(CGPoint) point;
 -(void)reset;
